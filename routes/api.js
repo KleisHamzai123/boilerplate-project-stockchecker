@@ -1,5 +1,5 @@
 'use strict';
-const StockModel = require("../moduls").Stock; // Use the correct file name
+const StockModel = require("./moduls").Stock; // Use the correct file name
 const fetch = require("node-fetch"); 
 
 async function createStock(stock, like, ip) {
