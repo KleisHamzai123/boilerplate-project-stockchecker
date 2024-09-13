@@ -1,5 +1,6 @@
 'use strict';
 require('dotenv').config();
+require('db-connection');
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
@@ -7,7 +8,6 @@ const cors        = require('cors');
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
-require("./db-connection");
 
 
 const app = express();
