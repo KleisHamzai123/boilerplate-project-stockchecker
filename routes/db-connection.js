@@ -1,3 +1,7 @@
-const mongoose = require("mongoose");
-const db = mongoose.connect(process.env.DB, {useUnifiedTopology: true, useNewUrlParser: true, });
-module.exports = db;
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.DB, { useUnifiedTopology: true, useNewUrlParser: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+module.exports = mongoose;
