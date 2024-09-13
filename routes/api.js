@@ -3,10 +3,21 @@ const StockModel = require("../models").Stock;
 const fetch = require("node-fetch"); 
 
 
+async function createStock(stock, like, ip){
 
+  const newStock = new StockModel({
+    symbol: stock,
+    likes: like ? [ip] : [],});
+  if (!foundStock) {
+    const savedNew = await newStock.save();
+    return savedNew;
+  }
+  
 
+async function findStock(stock){
+  return await StockModel.findOne({ symbol: stock  }).exec(); }
 
-async function getStock(stock){
+  async function getStock(stock){
   const response = await fetch('https://stock-price-checker-proxy.freecodecamp.rocks/v1/stock/${stock}/quote');
   const { symbol, latestPrice } = await response.json();
   return { symbol, latestPrice};
@@ -30,15 +41,26 @@ async function saveStock(stock, like, ip){
 module.exports = function (app) {
 
   app.route('/api/stock-prices')
-    .get(function async (req, res){
+    .get( async function (req, res){
       const { stock, like } = req.query;
       const { symbol, latestPrice } = await getStock(stock);
       if (!symbol){
         res.json ({ stockData: { likes: like ? 1: 0 }});
         return;
       }
+      const oneStockData = await saveStock ( symbol, like, req.ip);
+      console.log("One Stock Data");
+
+      res.json({
+        stockData:{
+          stock: symbol,
+          price: latestPrice,
+          likes: oneStockData.likes.length, 
+
+        },
+
+
+      });
     });
     
 };
-
-//https://stock-price-checker-proxy.freecodecamp.rocks/v1/stock/TSLA/quote
