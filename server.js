@@ -1,6 +1,6 @@
 'use strict';
 require('dotenv').config();
-require('db-connection');
+require('/workspace/boilerplate-project-stockchecker/routes/db-connection.js');
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
