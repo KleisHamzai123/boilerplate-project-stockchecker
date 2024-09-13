@@ -8,6 +8,7 @@ const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 
+require("./db-connectio.js");
 const app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -23,7 +24,8 @@ app.route('/')
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
-//For FCC testing purposes
+
+  //For FCC testing purposes
 fccTestingRoutes(app);
 
 //Routing for API 
