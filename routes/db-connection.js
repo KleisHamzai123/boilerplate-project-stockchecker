@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb+srv://kleishamzai123:Pallati1290!@cluster0.nzyzn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const mongoURI = process.env.MONGO_URI || 'mongodb+srv://kleishamzai:Pallati1290@cluster0.nzyzn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
-mongoose.connect(dbURI, {
-  connectTimeoutMS: 50000, // 30 seconds
-  socketTimeoutMS: 50000  // 30 seconds
+// Connect to MongoDB
+mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
-  .then(() => console.log('Database connected successfully'))
-  .catch(err => console.error('Database connection error:', err));
+    .then(() => console.log('MongoDB connected successfully!'))
+    .catch(err => console.error('MongoDB connection error:', err));
