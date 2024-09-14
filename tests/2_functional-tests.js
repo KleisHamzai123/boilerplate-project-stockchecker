@@ -62,7 +62,7 @@ suite('Functional Tests', function() {
                 assert.equal(res.status, 200);
                 assert.equal(res.body.stockData[0].stock, "AMZN");
                 assert.equal(res.body.stockData[1].stock, "T");
-                assert.equal(res.body.stockData[o].price, "AMZN has a price");
+                assert.exists(res.body.stockData[0].price, "AMZN has a price");
                 assert.exists(res.body.stockData[1].price, "T has a price");
                 done();
             }); 
@@ -78,10 +78,10 @@ suite('Functional Tests', function() {
                 assert.equal(res.status, 200);
                 assert.equal(res.body.stockData[0].stock, "AMZN");
                 assert.equal(res.body.stockData[1].stock, "T");
-                assert.equal(res.body.stockData[o].price, "AMZN has a price");
+                assert.exists(res.body.stockData[0].price, "AMZN has a price");
                 assert.exists(res.body.stockData[1].price, "T has a price");
-                assert.equal(res.body.stockData[o].rel_likes, "has rel_likes");
-                assert.equal(res.body.stockData[1].rel_likes, "has rel_likes");
+                assert.exists(res.body.stockData[0].rel_likes, "AMZN has rel_likes");
+                assert.exists(res.body.stockData[1].rel_likes, "T has rel_likes");
                 done();
             }); 
         });
